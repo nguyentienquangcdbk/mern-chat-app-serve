@@ -5,7 +5,7 @@ const appRoute = require('./routes/index');
 const dotenv = require('dotenv');
 const cors =require('cors')
 const socket = require('socket.io');
-
+const http = require('http');
 dotenv.config();
 const app = express();
 app.use(cors());
@@ -21,7 +21,8 @@ app.use('/api',appRoute);
 // app.use('/',(req,res) =>{
 //     console.log('hello');
 // })
-const server = app.listen(8000);
+const serve = http.createServer(app)
+const server = serve.listen(process.env.PORT || 8000);
 
 const io = socket(server, {
     cors: {
