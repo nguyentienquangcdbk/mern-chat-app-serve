@@ -26,7 +26,7 @@ const server = serve.listen(process.env.PORT || 8000);
 
 const io = socket(server, {
     cors: {
-      origin: "http://localhost:3000",
+      origin: "https://mern-chat-app-client-e7en.vercel.app",
       credentials: true,
     },
   });
