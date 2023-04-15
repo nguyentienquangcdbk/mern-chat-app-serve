@@ -22,30 +22,40 @@ app.use('/api',appRoute);
 //     console.log('hello');
 // })
 const serve = http.createServer(app)
-const server = serve.listen(process.env.PORT || 8000);
+serve.listen(process.env.PORT || 8000);
 
-const io = socket(server, {
-    cors: {
-      origin: "https://mern-chat-app-client-e7en.vercel.app",
-      credentials: true,
-    },
-  });
+// const io = socket(server, {
+//     cors: {
+//       origin: "https://mern-chat-app-client-e7en.vercel.app",
+//       credentials: true,
+//     },
+//   });
 
-global.onlineUsers = new Map();
+// global.onlineUsers = new Map();
 
-io.on('connection',(socket) =>{
-    global.chatSocket = socket;
-    socket.on('add-user',(userId) =>{
-        onlineUsers.set(userId,socket.id)
-    });
+// io.on('connection',(socket) =>{
+//     global.chatSocket = socket;
+//     socket.on('add-user',(userId) =>{
+//         onlineUsers.set(userId,socket.id)
+//     });
 
-    socket.on('send-msg',(data) =>{
-        const sendUserSocket = onlineUsers.get(data.to);
-        if(sendUserSocket){
-            socket.to(sendUserSocket).emit("msg-recieve",data.msg)
-        }
-    })
-})
+//     socket.on('send-msg',(data) =>{
+//         const sendUserSocket = onlineUsers.get(data.to);
+//         if(sendUserSocket){
+//             socket.to(sendUserSocket).emit("msg-recieve",data.msg)
+//         }
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
 // io.on("connection", (socket) => {
 //   global.chatSocket = socket;
 //   socket.on("add-user", (userId) => {
